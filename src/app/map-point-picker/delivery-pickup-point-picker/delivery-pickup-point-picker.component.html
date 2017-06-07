@@ -1,0 +1,16 @@
+<h1>{{ title }}</h1>
+<hr>
+<br><br>
+
+<!-- this creates a google map on the page with the given lat/lng from -->
+<!-- the component as the initial center of the map: -->
+
+<sebm-google-map [latitude]="lat" [longitude]="lng" [zoom]="zoom" (mapClick)="getMapPoint($event)">
+  <sebm-google-map-marker *ngFor="let x of markerList;let i=index" (markerClick)="removeMarker(i)" [latitude]="x.lat"
+                          [longitude]="x.lng"></sebm-google-map-marker>
+</sebm-google-map>
+
+<div class="col-md-12">
+  <br><br>
+  <button class="btn btn-warning btn-lg pull-right" (click)="saveMarkerPoints()">Save</button>
+</div>

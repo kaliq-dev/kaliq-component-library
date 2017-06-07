@@ -1,16 +1,38 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
+import {NgModule, ApplicationRef} from '@angular/core';
+import {AppRoutingModule} from './app-routing.module';
 
-import { AppComponent } from './app.component';
+import {FormsModule} from '@angular/forms';
+import {HttpModule} from '@angular/http';
+
+import {AppComponent} from './app.component';
+import {CustomerSupplierCompanyRequestFormComponent} from './request-form/customer-supplier-company-request-form/customer-supplier-company-request-form.component';
+import {DeliveryPickupPointPickerComponent} from './map-point-picker/delivery-pickup-point-picker/delivery-pickup-point-picker.component';
+
+// angular-maps
+import {AgmCoreModule} from 'angular2-google-maps/core';
+import { CustomHttpService } from './http.service';
+
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    CustomerSupplierCompanyRequestFormComponent,
+    DeliveryPickupPointPickerComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    FormsModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyCx-fMQuBQX7_XProdLqoTwkK5JbhhgBkU'
+    }),
+    HttpModule,
+    AppRoutingModule
   ],
-  providers: [],
+  providers: [
+    CustomHttpService
+  ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}
