@@ -14,3 +14,17 @@
   <br><br>
   <button class="btn btn-warning btn-lg pull-right" (click)="saveMarkerPoints()">Save</button>
 </div>
+
+<div class="col-md-12" *ngIf="showPos">
+  <br><br>
+  <div *ngFor="let position of markerList">
+    <h4>
+      Latitude: {{ position.lat }}
+      Longitude: {{ position.lng }}
+    </h4>
+
+    <li *ngFor="let location of position.geolocation">
+       {{ location['formatted_address'] }}
+    </li>
+  </div>
+</div>

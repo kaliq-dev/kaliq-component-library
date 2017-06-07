@@ -19,6 +19,7 @@ export class DeliveryPickupPointPickerComponent implements OnInit {
   zoom: number = 8;
 
   public markerList: Marker[] = [];
+  public showPos = false;
 
   constructor(private markerService: MarkerService) {
   }
@@ -38,14 +39,18 @@ export class DeliveryPickupPointPickerComponent implements OnInit {
   }
 
   saveMarkerPoints() {
-    _.each(this.markerList, (item) => {
-      this.markerService.getGeoLocationName(item)
+    this.showPos = true;
+    this.markerList.map((element, index, array) => {
+      this.markerService.getGeoLocationName(element)
         .subscribe(
           (res) => {
-            console.log(res);
+            if (res['status'] === 'OK') {
+              this.markerList[index]['geolocation'] = res['results'];
+            }
           }
         )
-    })
-  }
+    });
 
+    console.log(this.markerList);
+  }
 }
